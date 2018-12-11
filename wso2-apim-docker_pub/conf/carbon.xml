@@ -347,7 +347,8 @@
     </ServiceUserRoles>
     
     <!-- 
-      Enable following config to allow Emails as usernames. 	
+      Enable following config to allow Emails as usernames. 
+	  Enabled for SSO setup
     -->	    	
     <EnableEmailUserName>true</EnableEmailUserName>	
 

@@ -28,6 +28,7 @@
     </Authenticator>
 
     <!-- Authenticator Configurations for SAML2SSOAuthenticator -->
+	<!-- SSO changes made to reduce priority -->
     <Authenticator name="SAML2SSOAuthenticator" disabled="false">
         <Priority>0</Priority>
         <Config>

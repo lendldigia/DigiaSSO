@@ -8,7 +8,7 @@
     "tagWiseMode" :"false",
     "tagGroupKey" :"-group",
     "ssoConfiguration" : {
-        "enabled" : "true",
+        "enabled" : "false", // values made false for disabling SSO and SSO details added below for identityProviderURL, keyStorePassword, identityAlias, keyStoreName
         "issuer" : "API_STORE",
         "identityProviderURL" : "https://km.mgt-wso2-dev.vitkutin.com.vitkutin.com/samlsso",
         "keyStorePassword" : "wso2carbon",

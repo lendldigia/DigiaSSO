@@ -20,6 +20,7 @@
             <AddAdmin>true</AddAdmin>
             <AdminRole>admin</AdminRole>
             <AdminUser>
+				<!-- Changed username for SSO -->
                 <UserName>admin@wso2.com</UserName>
                 <Password>admin</Password>
             </AdminUser>
@@ -110,6 +111,7 @@
 	         In which role is stored at user level. Depending on this value we need to change the Search Base within code.
 	         isADLDSRole - (Do not comment) Set to true if connecting to an AD LDS instance else set to false.
 	    -->
+		<!--Enabled Active Directory and LDAP for SSO-->
         <UserStoreManager class="org.wso2.carbon.user.core.ldap.ActiveDirectoryUserStoreManager">
             <Property name="TenantManager">org.wso2.carbon.user.core.tenant.CommonHybridLDAPTenantManager</Property>
             <Property name="ConnectionURL">ldaps://10.100.1.100:636</Property> 
@@ -165,7 +167,7 @@
              service password formats. In case if user core cache domain is needed to identify uniquely set property
              <Property name="UserCoreCacheIdentifier">domain</Property>
         -->
-        <!--ISUserStoreManager class="org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager">
+        <ISUserStoreManager class="org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager">
             <Property name="TenantManager">org.wso2.carbon.user.core.tenant.CommonHybridLDAPTenantManager</Property>
             <Property name="ConnectionURL">ldap://localhost:${Ports.EmbeddedLDAP.LDAPServerPort}</Property>
             <Property name="ConnectionName">uid=admin,ou=system</Property>
@@ -173,9 +175,9 @@
             <Property name="AnonymousBind">false</Property>
             <Property name="UserSearchBase">ou=Users,dc=wso2,dc=org</Property>
             <Property name="UserEntryObjectClass">identityPerson</Property>
-            <Property name="UserNameAttribute">uid</Property>
-            <Property name="UserNameSearchFilter">(&amp;(objectClass=person)(uid=?))</Property>
-            <Property name="UserNameListFilter">(objectClass=person)</Property>
+            <Property name="UserNameAttribute">mail</Property>
+            <Property name="UserNameSearchFilter">(&amp;(objectClass=identityPerson)(mail=?))</Property>
+            <Property name="UserNameListFilter">(&amp;(objectClass=identityPerson)(mail=*))</Property>
             <Property name="DisplayNameAttribute"/>
             <Property name="ReadGroups">true</Property>
             <Property name="WriteGroups">true</Property>
@@ -186,8 +188,8 @@
             <Property name="GroupNameListFilter">(objectClass=groupOfNames)</Property>
             <Property name="MembershipAttribute">member</Property>
             <Property name="BackLinksEnabled">false</Property>
-            <Property name="UsernameJavaRegEx">[a-zA-Z0-9._-|//]{3,30}$</Property>
-            <Property name="UsernameJavaScriptRegEx">^[\S]{3,30}$</Property>
+            <Property name="UsernameJavaRegEx">^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$</Property>
+            <Property name="UsernameJavaScriptRegEx">^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$</Property>
             <Property name="UsernameJavaRegExViolationErrorMsg">Username pattern policy violated</Property>
             <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
             <Property name="PasswordJavaScriptRegEx">^[\S]{5,30}$</Property>
@@ -208,7 +210,7 @@
             <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="ReadTimeout"/>
             <Property name="RetryAttempts"/>
-        </ISUserStoreManager-->
+        </ISUserStoreManager>
         <AuthorizationManager class="org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager">
             <Property name="AdminRoleManagementPermissions">/permission</Property>
             <Property name="AuthorizationCacheEnabled">true</Property>
